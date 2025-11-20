@@ -7,6 +7,8 @@ public final class InsertionSort {
 
     public static void sort(int[] vector, boolean show) {
 
+        long startTime = System.nanoTime();
+
         if (!SortingUtils.notEmpty(vector)) {
             System.out.println("Vector vacio...");
         } else {
@@ -41,6 +43,9 @@ public final class InsertionSort {
 
             }
         }
+
+        long endTime = System.nanoTime();
+        System.out.println("El metodo se demoro " + (endTime - startTime) + " nano segundos");
 
     }
 }

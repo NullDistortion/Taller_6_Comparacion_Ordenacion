@@ -8,7 +8,7 @@ public class Main {
 
 
         //BubbleSort.sort(vec, true);
-        InsertionSort.sort(vec, true);
+        // InsertionSort.sort(vec, true);
         //SelectionSort.sort(vec, true);
     }
 }
