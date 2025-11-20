@@ -7,28 +7,40 @@ public final class InsertionSort {
 
     public static void sort(int[] vector, boolean show) {
 
-        for (int i = 1; i < vector.length; i++) {
+        if (!SortingUtils.notEmpty(vector)) {
+            System.out.println("Vector vacio...");
+        } else {
 
-            int currentNumber = vector[i];
-            int j = i - 1;
+            System.out.println("Insertion sort");
+            System.out.println("Arreglo inical: "+Arrays.toString(vector)+"\n");
 
-            if (show) {
-                System.out.println("Colocando el número " + currentNumber + " donde debe ir...");
-            }
+            for (int i = 1; i < vector.length; i++) {
 
-            // Aqui movemos los números que son mayores hacia la derecha
-            while (j >= 0 && vector[j] > currentNumber) {
-                vector[j + 1] = vector[j];
-                j--;
-            }
+                int currentNumber = vector[i];
+                int j = i - 1;
 
-            // Aqui solo va hacer para ordenarlo donde va a quedar el numero
-            vector[j + 1] = currentNumber;
+                System.out.println("Traza: " + i);
+                if (show) {
+                    System.out.println(Arrays.toString(vector));
+                    System.out.println("Cambiando la pos de  " + currentNumber);
+                }
 
-            if (show) {
-                System.out.print("Estado del vector: ");
-                System.out.println(Arrays.toString(vector)+"\n");
+                // Aqui movemos los números que son mayores hacia la derecha
+                while (j >= 0 && vector[j] > currentNumber) {
+                    vector[j + 1] = vector[j];
+                    j--;
+                }
+
+                // Aqui solo va hacer para ordenarlo donde va a quedar el numero
+                vector[j + 1] = currentNumber;
+
+                if (show) {
+                    System.out.print("Estado del vector: ");
+                    System.out.println(Arrays.toString(vector)+"\n");
+                }
+
             }
         }
+
     }
 }
