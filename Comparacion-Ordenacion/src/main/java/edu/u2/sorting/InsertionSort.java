@@ -1,51 +1,32 @@
 package edu.u2.sorting;
 
-import java.util.Arrays;
-
-// Aqui solo tomara el arreglo de donde esta y lo va a ordenar en la posicion que debe estar
 public final class InsertionSort {
 
-    public static void sort(int[] vector, boolean show) {
+    public static int comparisons = 0;
+    public static int swaps = 0;
 
-        long startTime = System.nanoTime();
+    public static void reset() {
+        comparisons = 0;
+        swaps = 0;
+    }
 
-        if (!SortingUtils.notEmpty(vector)) {
-            System.out.println("Vector vacio...");
-        } else {
+    public static void sort(int[] arr) {
+        if (!SortingUtils.notEmpty(arr)) return;
 
-            System.out.println("Insertion sort");
-            System.out.println("Arreglo inical: "+Arrays.toString(vector)+"\n");
+        for (int i = 1; i < arr.length; i++) {
+            int key = arr[i];
+            int j = i - 1;
 
-            for (int i = 1; i < vector.length; i++) {
-
-                int currentNumber = vector[i];
-                int j = i - 1;
-
-                System.out.println("Traza: " + i);
-                if (show) {
-                    System.out.println(Arrays.toString(vector));
-                    System.out.println("Cambiando la pos de  " + currentNumber);
-                }
-
-                // Aqui movemos los números que son mayores hacia la derecha
-                while (j >= 0 && vector[j] > currentNumber) {
-                    vector[j + 1] = vector[j];
+            while (j >= 0) {
+                comparisons++;
+                if (arr[j] > key) {
+                    arr[j + 1] = arr[j];
+                    swaps++;
                     j--;
-                }
-
-                // Aqui solo va hacer para ordenarlo donde va a quedar el numero
-                vector[j + 1] = currentNumber;
-
-                if (show) {
-                    System.out.print("Estado del vector: ");
-                    System.out.println(Arrays.toString(vector)+"\n");
-                }
-
+                } else break;
             }
+
+            arr[j + 1] = key;
         }
-
-        long endTime = System.nanoTime();
-        System.out.println("El metodo se demoro " + (endTime - startTime) + " nano segundos");
-
     }
 }
